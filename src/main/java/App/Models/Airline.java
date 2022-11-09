@@ -21,3 +21,4 @@ public class Airline {
     @JsonManagedReference
     List<Reservation> reservationList; //li
 }
+
