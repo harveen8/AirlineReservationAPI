@@ -8,14 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @Entity
 public class Reservation {
     @Id
     int reservationId;
-    String source;
-    String destination;
+    String departureCity;
+    String arrivalCity;
+    Date departure;
+    Date arrival;
+    int price;
 
     @ManyToOne
     @JsonBackReference
