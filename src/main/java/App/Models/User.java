@@ -1,9 +1,12 @@
 package App.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,5 +18,8 @@ public class User {
     String password;
     String name;
 
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    List<Reservation> reservationList; //linked with the review table
 
 }
