@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -15,21 +12,27 @@ import java.util.Date;
 @Entity
 public class Reservation {
     @Id
+    @Column
     int reservationId;
+    @Column
     String departureCity;
+    @Column
     String arrivalCity;
+    @Column
     Date departure;
+    @Column
     Date arrival;
+    @Column
     int price;
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "airline_airline_id")
+    @JoinColumn(name = "airlineId")
     Airline airline;
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "user_user_id")
-    User user;
+    @JoinColumn(name = "userId")
+    Users users;
 
 }

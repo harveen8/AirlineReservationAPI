@@ -11,15 +11,20 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-public class User {
+public class Users {
     @Id
+    @Column
     int userId;
+    @Column
     String email;
+    @Column
     String password;
+    @Column
     String name;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     @JsonManagedReference
     List<Reservation> reservationList; //linked with the review table
 
 }
+
