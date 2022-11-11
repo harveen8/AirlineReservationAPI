@@ -1,27 +1,26 @@
 package App.Models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
 public class Airline {
     @Id
-    @Column
+    @SequenceGenerator(name="identifier", sequenceName="mytable_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="identifier")
     int airlineId;
-    @Column
+
     String airlineName;
 
     @OneToMany(mappedBy = "airline")
-    @JsonManagedReference
     List<Reservation> reservationList;
 }
 

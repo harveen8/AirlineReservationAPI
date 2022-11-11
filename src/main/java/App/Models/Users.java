@@ -14,6 +14,8 @@ import java.util.List;
 public class Users {
     @Id
     @Column
+    @SequenceGenerator(name="identifier", sequenceName="mytable_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="identifier")
     int userId;
     @Column
     String email;
@@ -23,7 +25,6 @@ public class Users {
     String name;
 
     @OneToMany(mappedBy = "users")
-    @JsonManagedReference
     List<Reservation> reservationList; //linked with the review table
 
 }

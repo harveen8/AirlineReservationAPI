@@ -13,6 +13,8 @@ import java.util.Date;
 public class Reservation {
     @Id
     @Column
+    @SequenceGenerator(name="identifier", sequenceName="mytable_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="identifier")
     int reservationId;
     @Column
     String departureCity;
@@ -26,13 +28,12 @@ public class Reservation {
     int price;
 
     @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "airlineId")
+    @JoinColumn(name = "arline")
     Airline airline;
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "users")
     Users users;
 
 }

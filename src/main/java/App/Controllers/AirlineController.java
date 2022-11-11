@@ -26,7 +26,7 @@ public class AirlineController {
         return airlineService.getAirlineById(id);
     }
 
-    @PostMapping("/airline")
+    @PostMapping(value="/airline")
     public Airline addAirline(@RequestBody Airline airline){
         return airlineService.addAirline(airline);
     }
