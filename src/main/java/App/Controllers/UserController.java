@@ -14,8 +14,8 @@ public class UserController {
     public UserController(UserService userService){
         this.userService=userService;
     }
-    @GetMapping("/user/check")
-    public boolean validateUser(@RequestBody validateUser v){
+    @PostMapping("/user/check")
+    public int validateUser(@RequestBody validateUser v){
         return userService.checkCredentials(v);
     }
 

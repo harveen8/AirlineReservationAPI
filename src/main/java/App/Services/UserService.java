@@ -19,7 +19,7 @@ public class UserService {
         this.userRepository=userRepository;
     }
     public boolean addUser(Users u){
-        if(checkCredentials(u.getEmail(),u.getPassword())){
+        if(checkCredentials(u.getEmail(),u.getPassword())!=-1){
             return false;
         }else {
             userRepository.save(u);
@@ -30,23 +30,22 @@ public class UserService {
         return userRepository.getReferenceById(id);
     }
 
-    public boolean checkCredentials(validateUser u){
+    public int checkCredentials(validateUser u){
         List<Users> allUsers = userRepository.findAll();
         for(int i =0; i< allUsers.size(); i++){
             if(allUsers.get(i).getEmail().equals(u.getEmail())&&
                     allUsers.get(i).getPassword().equals(u.getPassword())){
-                return true;
-            }
+                return allUsers.get(i).getUserId();            }
         }
-        return false;
+        return -1;
     }
-    public boolean checkCredentials(String email, String pass){
+    public int checkCredentials(String email, String pass){
         List<Users> allUsers = userRepository.findAll();
         for(int i =0; i< allUsers.size(); i++){
             if(allUsers.get(i).getEmail().equals(email)  && allUsers.get(i).getPassword().equals(pass)){
-                return true;
+                return allUsers.get(i).getUserId();
             }
         }
-        return false;
+        return -1;
     }
 }
